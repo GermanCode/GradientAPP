@@ -1,0 +1,30 @@
+<div class="index container p-2">
+    <div class="row">
+        {{#each ejercicios}}
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <a href="{{ id_Ejercicio }}" >
+                        <h3 class="card-title text-uppercase">
+                            {{fk_Docente}}
+                        </h3>
+                    </a>
+                    <p class= "m-2">{{descripcion}}</p>
+                    <p>{{timeago fecha_Ini}}</p>
+                    <p>{{timeago fecha_Fin}}</p>
+                    <p>{{timeago fecha_Env}}</p>
+                    <a href="/ejercicios/delete/{{id_Ejercicio}}" class="btn btn-danger">Eliminar Ejercicio</a>
+                    <a href="/ejercicios/edit_ejercicio/{{id_Ejercicio}}" class="btn btn-secondary">Editar Ejercicio</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay Ejercicios Registrados aún... -- There are not Exercises saved yet...</p>
+                    <a href="/ejercicios/add_ejercicio">Crear un Ejercicio!</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

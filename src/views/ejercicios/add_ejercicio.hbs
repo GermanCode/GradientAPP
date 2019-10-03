@@ -1,0 +1,62 @@
+<div class="container p-2">
+    <div class="row">
+        <div class="col-md-6 mx-auto p-2">
+            <h1>Agregar Nuevo Ejercicio</h1>
+            <div class="card">
+                <div class="card-body ">
+                    <form action="/ejercicios/add_ejercicio" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="funcionObjetivo"
+                                placeholder="Funcion Objetivo" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <b>Restricciones?</b>
+                            <input type="checkbox" name="check" id="check" value="1"
+                                onchange="javascript:showContent()" />
+                        </div>
+                        <div class="form-group">
+                            <div id="content" style="display: none;">
+                                <div class="container mx-auto input-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" id="inputLadoIzq" class="form-control" name="inputLadoIzq" placeholder="Lado Izq">
+                                        </div>
+                                        <div class="col text-center input-group-btn">
+                                            <select type="button" class="btn btn-secondary" id="signo" name="signo" onchange="javascript:selectSigno()">
+                                                <option><a class="dropdown-item" href="#"> Signo </a></option>
+                                                <option><a class="dropdown-item" href="#"> < </a></option>
+                                                <option><a class="dropdown-item" href="#"> > </a></option>
+                                                <option><a class="dropdown-item" href="#"> = </a></option>
+                                                <option><a class="dropdown-item" href="#"> <= </a></option>
+                                                <option><a class="dropdown-item" href="#"> >= </a></option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="inputLadoDer" name="inputLadoDer" placeholder="Lado Der">
+                                        </div>
+                                    </div>
+                                    <div class="container p-2">
+                                        
+                                        <button type="button" id="addRestric" name="addRestric" onclick="javascript:llenarHidden()"> + 
+                                        <button type="button" id="delRestric" name="delRestric" onclick="javascript:eliminarRestriccion()"> - 
+                                        <input id="restriccionCompleta" name="restriccionCompleta" type="hidden">      
+                                </div>
+                            </div>
+                        </div>
+                        
+                        </div>
+                        <div class="form-group">
+                            <textarea name="descripcion" id="descripcion" rows="2" class="form-control p-2" placeholder="Descripcion del Ejercicio"></textarea>
+                        </div>
+                        <div class="form-group"></div>
+                        <button class="btn btn-success btn-block">
+                            Guardar
+                        </button>
+                        <p></p>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
