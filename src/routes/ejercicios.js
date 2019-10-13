@@ -14,14 +14,14 @@ router.get('/ejercicios/add_ejercicio', async (req, res) =>{
     res.render('ejercicios/add_ejercicio');
 });
 
-router.post('/add_ejercicio', async (req, res) =>  {
-    const { fk_Docente, fecha_Ini, fecha_Fin, fun_Obj, desc_Ejer } = req.body;
+router.post('/ejercicios/add_ejercicio', async (req, res) =>  {
+    const { fk_Docente, fecha_Ini, fecha_Fin, func_Obj, desc_Ejer } = req.body;
     const newEjercicio = {
         fk_Docente,
         fecha_Ini,
         fecha_Fin,
-        fun_Obj,
-        desc_Ejer,
+        func_Obj,
+        desc_Ejer
     };
     await pool.query('INSERT INTO ejercicios set ?', [newEjercicio]);
     req.flash('success', ' Ejercicio guardado correctamente');

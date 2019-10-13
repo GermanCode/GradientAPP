@@ -62,6 +62,17 @@
             alert(document.getElementById("descripcion").value);
         }
 
+        function alerta(){
+            var mensaje;
+            var opcion = confirm("Clicka en Aceptar o Cancelar");
+            if (opcion == true) {
+                mensaje = "Has clickado OK";
+            } else {
+                mensaje = "Has clickado Cancelar";
+            }
+            document.getElementById("ejemplo").innerHTML = mensaje;
+        }
+
     </script>
 
 </head>
@@ -69,15 +80,7 @@
 <body>
     {{> navigation }}
 
-    {{#if success}}
-        <div class="container">
-            <div class="row">
-                <div class="col md-4 mx-auto">
-                    <div class="alert alert-success alert-dismisi fade show"></div>
-                </div>
-            </div>
-        </div>
-    {{/if}}
+    {{> message }}
 
     {{{ body }}}
 
@@ -107,4 +110,14 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossor
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+
+</body>
+{{> footer }}
+
+</html>

@@ -2,7 +2,7 @@
     <div class="row">
         {{#each ejercicios}}
         <div class="col-md-4">
-            <div class="card text-center">
+            <div class="card text-center" id="card">
                 <div class="card-body">
                     <a href="{{ id_Ejercicio }}" >
                         <h3 class="card-title text-uppercase">
@@ -13,7 +13,7 @@
                     <p>{{timeago fecha_Ini}}</p>
                     <p>{{timeago fecha_Fin}}</p>
                     <p>{{timeago fecha_Env}}</p>
-                    <a href="/ejercicios/delete/{{id_Ejercicio}}" class="btn btn-danger">Eliminar Ejercicio</a>
+                    <a href="/ejercicios/delete/{{id_Ejercicio}}" class="btn btn-danger" onclick="return confirm('Estás seguro que deseas eliminar el ejercicio?');">Eliminar Ejercicio</a>
                     <a href="/ejercicios/edit_ejercicio/{{id_Ejercicio}}" class="btn btn-secondary">Editar Ejercicio</a>
                 </div>
             </div>
@@ -28,3 +28,5 @@
         {{/each}}
     </div>
 </div>
+
+ 
