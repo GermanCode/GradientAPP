@@ -17,3 +17,61 @@ input#show:checked ~ div#content {
 input#hide:checked ~ div#content {
 	display:none;
 }
+
+body{
+  /*background: url('/img/3.jpg');*/  
+  background: #f5f6f5;
+  font-family: 'Oswald', sans-serif;
+  overflow: hidden;
+}
+
+.index {
+  width: 100vw;
+  height: 34rem;
+}
+
+.masterhead {
+  color: white;
+  min-height: 33rem;
+  width: 100%;
+  height: 100%;
+  padding-top: 8rem;
+  /*background: url('/img/2.jpg');*/
+  background-position: center center;
+  background-repeat: repeat;
+  /*background-size: cover; En el ejemplo del video*/
+  background-size: contain;
+}
+
+.masterhead h1 {
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 992px) {
+  .masterhead h1 {
+      font-size: 5.5rem;
+  }
+}
+
+.buho {
+  width: 15%;
+  height: 15%;
+}
+
+.foo {
+  visibility: visible;
+}
+
+.foo h1 {
+  text-align: center center;
+  font-size: 1rem;
+}
+
+.fooimg {
+  visibility: visible;    
+  /*background: url('/img/2.jpg');*/
+  background-size: cover;
+}
+

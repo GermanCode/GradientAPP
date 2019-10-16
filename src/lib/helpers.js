@@ -1,4 +1,4 @@
-/*const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const helpers = {};
 
 helpers.encryptPassword = async (password) => {
@@ -7,7 +7,7 @@ helpers.encryptPassword = async (password) => {
     return hash;
 };
 
-helpers.mathPassword = async (password, savedPassword) =>{
+helpers.mathPassword = async (password, savedPassword) => {
     try{
         return await bcrypt.compare(password, savedPassword);
     }catch(e){
@@ -17,4 +17,4 @@ helpers.mathPassword = async (password, savedPassword) =>{
 
 //await bcrypt.compare(password, savedPassword);
 
-module.exports = helpers;*/
+module.exports = helpers;

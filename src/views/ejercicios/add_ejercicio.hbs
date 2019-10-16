@@ -12,7 +12,7 @@
                         <div class="form-group">
                             <b>Restricciones?</b>
                             <input type="checkbox" name="check" id="check" value="1"
-                                onchange="javascript:showContent()" />
+                                onchange="javascript:mostrarPanelRestricciones()" />
                         </div>
                         <div class="form-group">
                             <div id="content" style="display: none;">
@@ -22,7 +22,7 @@
                                             <input type="text" id="inputLadoIzq" class="form-control" name="inputLadoIzq" placeholder="Lado Izq">
                                         </div>
                                         <div class="col text-center input-group-btn">
-                                            <select type="button" class="btn btn-secondary" id="signo" name="signo" onchange="javascript:selectSigno()">
+                                            <select type="button" class="btn btn-secondary" id="signo" name="signo" onchange="javascript:selectSignoParaFuncion()">
                                                 <option><a class="dropdown-item" href="#"> Signo </a></option>
                                                 <option><a class="dropdown-item" href="#"> < </a></option>
                                                 <option><a class="dropdown-item" href="#"> > </a></option>

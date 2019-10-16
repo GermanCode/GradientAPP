@@ -5,8 +5,9 @@ const path = require("path");
 const flash = require('connect-flash');
 const session = require('express-session');
 const MySqlStore = require('express-mysql-session');
+const passport = require('passport');
+
 const { database } = require('./keys');
-const passport= require('passport');
 
 
 
@@ -27,7 +28,7 @@ app.engine('.hbs', exphbs({
 
 app.set('view engine', '.hbs');
 
-// Middlewarea
+// Middlewares
 app.use(session({
     secret: 'AppGradient',
     resave: false,
@@ -46,8 +47,12 @@ app.use(passport.session());
 
 app.use((req, res, next) =>{
     app.locals.success = req.flash('success');
+    app.locals.message = req.flash('message');
+    app.locals.user = req.user;
     next();
 });
+
+
 
 // Routes
 

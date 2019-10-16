@@ -7,7 +7,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-            {{!-- {{#if user}} --}}
+            {{#if user}}
                     <li class="nav-item dropdown">
                     <a class = "nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" arias aria-haspopup="true" aria-expanded="false">
                         Panel
@@ -25,14 +25,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Salir</a>
                 </li>
-                {{!-- {{else}} --}} 
+                {{else}}
                     <li class="nav-item">
                         <a href="/signin" class="nav-link">Ingresar</a>
                     </li>
                     <li class="nav-item">
                         <a href="/signup" class="nav-link">Registrarse</a>
                     </li>
-           {{!-- {{/if}} --}}            
+            {{/if}}       
             </ul>
         </div>
     </div>

@@ -4,7 +4,7 @@ const router = express.Router();
 const pool = require('../database');
 
 router.get('/', (req, res) => {
-    res.render('gradiente'); 
+    res.render('index'); 
 });
 
 router.post('/', async (req, res)=>{
