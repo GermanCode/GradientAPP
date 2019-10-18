@@ -34,7 +34,11 @@ router.post('/', async (req, res)=>{
     };
     console.log(newFunc);
     await pool.query('INSERT INTO funcionprueba SET ?', [newFunc]);
-    res.send('Received');
+    res.render('index', {data: funcion,
+    visible: 'block',
+    dX : derivX.text(),
+    dY : derivY.text()    
+    });
     
 });
 

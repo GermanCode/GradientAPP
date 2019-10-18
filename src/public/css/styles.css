@@ -75,3 +75,7 @@ body{
   background-size: cover;
 }
 
+.ocultar{
+  display : none;
+}
+
