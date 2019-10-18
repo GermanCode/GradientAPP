@@ -14,7 +14,11 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res)=>{
 //Recibimos la funcion ingresada y la almacenamos en una vairable llamada "funcion"
-    const { funcion } = req.body;
+console.log(req.body)
+    const { funcion, x_inicial, y_inicial } = req.body;
+    var x_i = x_inicial;
+    var y_i = y_inicial;
+    console.log(x_i, y_i);
 //Parseamos esa funcion para hacerla entendible por la maquina, con la ayuda de Algebra.JS
     var value = algebra.parse(funcion);
 //Hacemos uso de la biblioteca Merdaner para las derivadas paraciales
@@ -35,9 +39,11 @@ router.post('/', async (req, res)=>{
     console.log(newFunc);
     await pool.query('INSERT INTO funcionprueba SET ?', [newFunc]);
     res.render('index', {data: funcion,
-    visible: 'block',
+    visible: 'none',
     dX : derivX.text(),
-    dY : derivY.text()    
+    dY : derivY.text(),   
+    x_i : x_i, 
+    y_i : y_i
     });
     
 });

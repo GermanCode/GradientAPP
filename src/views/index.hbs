@@ -1,22 +1,22 @@
-<div class="container p-4">
+<div class="container">
     <div class="row">
-        <div class="col-md-4 mx-auto">
+        <div class="col-md-4 mx-auto p-2">
             <div class="card">
-                <div class="card-header mx-auto"><h1>GradientAPP</h1></div>
-                <div class="card-body">
+                <div class="mx-auto"><h2>GradientAPP</h2>
+                </div>
+                <div class="card-body" style="display: {{ visible }};">
                     <form action="/" method="POST">
                     <div class="form-group">
                         <input type="text" class="form-control" name="funcion" placeholder="Ingrese la Función a Resolver" autofocus>
                     </div>
                     <h4 class="mx-auto text-center">Vector Inicial</h4>
-                    <div class="input-group p-2">
-                    <input name="x_inicial" id="x_inicial" type="number" class="form-control text-center" placeholder="0">
+                    <div class="input-group p-1">
+                    <input name="x_inicial" id="x_inicial" type="number" class="form-control text-center" placeholder="0" value=0>
                     <span class="input-group-addon">-</span>
-                    <input name="y_inicial" id="y_inicial" type="number" class="form-control text-center" placeholder="0">
+                    <input name="y_inicial" id="y_inicial" type="number" class="form-control text-center" placeholder="0" value=0>
                     </div>
-                    <div class="form-group p-3">
-                        <button class="btn btn-success btn-block" onclick="mostrarResultado()">Resolver</button>
-                        <input type="checkbox" name="ocultar" id="ocultar" style="display:none;" onchange="javascript:mostrarSolucion()" />
+                    <div class="form-group p-1">
+                        <button class="btn btn-success btn-block">Resolver</button>
                     </div>
                     </form>
                 </div>
@@ -24,8 +24,6 @@
         </div>
     </div>
     <div>
-
 {{> gradiente }}
-
     </div>
 </div>

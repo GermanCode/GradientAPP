@@ -1,30 +1,81 @@
-<div id="flotante">
+<div class="container">
     <div class="container text-center my-auto">
-        <h1 class="mb-1">Funcion Ingresada:</h1>
-        <h2>{{ data }}</h2>
-        <h3 class="mb-5">
+        <h3 class="mb-1">Funcion Ingresada:</h3>
+        <br>
+        <h4 class="form-group">{{ data }}</h4>
+        <h5 class="mb-3">
             <em>Resultado</em>
-        </h3>
-        <div class="row">
-            <div class="col-md-4 mx-auto">
-                <div class="card">
-                    <div class="card-body">
-                    <h4 class="mx-auto text-center">Derivadas Parciales</h4>
+        </h5>
+        <br>
+    </div>
+
+<div class="container" style="overflow: hidden; text-align:center; mx-auto">
+
+            <div class="col-md-4 mx-auto" style="float: left;">
+                <div class="card" style="border: 2px solid #000000; border-radius: 20px;">
+                <h3 class="text-center">
+                <em>Vector Inicial</em>
+                </h3>
+                    <div class="input-group p-2">
+                    <input name="x_inicial" id="x_inicial" type="number" class="form-control text-center" value={{ x_i }}>
+                    <span class="input-group-addon">-</span>
+                    <input name="y_inicial" id="y_inicial" type="number" class="form-control text-center" value={{ y_i }}>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mx-auto" style="display: inline-block;">
+                <div class="card" style="border: 2px solid #000000; border-radius: 25px;">
+                <h3 class="text-center">
+                <em>Iteraciones</em>
+                </h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+
+            <div class="col-md-4 mx-auto" style="float:right;">
+                <div class="card" style="border: 2px solid #000000; border-radius: 20px;">
+                    <h3 class="text-center">
+                        <em> Derivadas Parciales </em>
+                    </h3> 
                         <div class="input-group p-2">
                         <input name="d_x_inicial" id="d_x_inicial" type="text" class="form-control text-center" value={{ dX }}>
                         <span class="input-group-addon">-</span>
                         <input name="d_y_inicial" id="d_y_inicial" type="text" class="form-control text-center" value={{ dY }}>
-                        </div>
-                    </div>
+                        </div>           
                 </div>
             </div>
-        </div>
-    <div>
-    <table border="1">
-    <tr>
-    <td> Iteracion </td><td> X </td><td> Y </td><td> X' </td><td> Valor </td><td> Error </td>
-    </tr>
 </div>
 
 </div>
-</div>
+
+
