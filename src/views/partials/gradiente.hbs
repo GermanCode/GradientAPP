@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container ocultar" style="height: 410px; overflow: auto; display:{{ visible2 }};">
     <div class="container text-center my-auto">
         <h3 class="mb-1">Funcion Ingresada:</h3>
         <br>
@@ -9,20 +9,19 @@
         <br>
     </div>
 
-<div class="container" style="overflow: hidden; text-align:center; mx-auto">
-
-            <div class="col-md-4 mx-auto" style="float: left;">
-                <div class="card" style="border: 2px solid #000000; border-radius: 20px;">
-                <h3 class="text-center">
-                <em>Vector Inicial</em>
-                </h3>
-                    <div class="input-group p-2">
-                    <input name="x_inicial" id="x_inicial" type="number" class="form-control text-center" value={{ x_i }}>
-                    <span class="input-group-addon">-</span>
-                    <input name="y_inicial" id="y_inicial" type="number" class="form-control text-center" value={{ y_i }}>
-                    </div>
-                </div>
+<div class="container mx-auto" style="text-align:center;">
+    <div class="col-md-4 mx-auto" style="float: left;">
+        <div class="card" style="border: 2px solid #000000; border-radius: 20px;">
+        <h3 class="text-center">
+        <em>Vector Inicial</em>
+        </h3>
+            <div class="input-group p-2">
+            <input name="x_inicial" id="x_inicial" type="number" class="form-control text-center" value={{ x_i }}>
+            <span class="input-group-addon">-</span>
+            <input name="y_inicial" id="y_inicial" type="number" class="form-control text-center" value={{ y_i }}>
             </div>
+        </div>
+    </div>
 
             <div class="col-md-4 mx-auto" style="display: inline-block;">
                 <div class="card" style="border: 2px solid #000000; border-radius: 25px;">
