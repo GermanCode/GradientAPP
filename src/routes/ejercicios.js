@@ -4,7 +4,6 @@ const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 const pool = require('../database');
 
 router.get('/ejercicios', isLoggedIn, async (req, res)=>{
-
 const ejercicios = await pool.query('SELECT * FROM ejercicios')
 console.log(ejercicios);
 res.render('ejercicios/list_ejercicios', { ejercicios });

@@ -14,13 +14,16 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res)=>{
     var cont = 0;
-    const err = 0.0000001;
+    const err = 0.3;
+    var datos = [];
+    var px, py;
 //Recibimos la funcion ingresada y la almacenamos en una vairable llamada "funcion"
     var { funcion, x_inicial, y_inicial } = req.body;
 
     var x_i = nerdamer(x_inicial);
     var y_i = nerdamer(y_inicial);
-
+    px=x_inicial;
+    py=y_inicial;
 //Parseamos esa funcion para hacerla entendible por la maquina, con la ayuda de Algebra.JS
     var func = nerdamer(funcion);
     console.log(func.text());
@@ -41,42 +44,41 @@ var t = new nerdamer("t");
 //Evaluamos la derivada parcial de x.
 var fx1 = derivX.evaluate({x: x_i});
 fx1 = fx1.evaluate({y: y_i});
+var px1 = fx1;
 
 //Evaluamos la derivada parcial de y.
 var fy1 = derivY.evaluate({y: y_i});
 fy1 = fy1.evaluate({x: x_i});
+var py1 = fy1;
 
-while(Math.abs(fx1) > err || Math.abs(fy1) > err){
+cont = 0;
+do{
 
-    fx1 = derivX.evaluate({x: x_i});
-    fx1 = fx1.evaluate({y: y_i});
-    fy1 = derivY.evaluate({y: y_i});
-    fy1 = fy1.evaluate({x: x_i});
-    
-    //Multiplicamos por t.
-var fx1_t = t.multiply(fx1);
-var fy1_t = t.multiply(fy1);
-var cont = 0;
+cont ++;
+
+//Multiplicamos por t.
+var fx1_t = fx1.multiply(t);
+var fy1_t = fy1.multiply(t);
 
 //Agregamos el vector inicial.
-fx1_t = x_i.add(fx1_t);
-fy1_t = y_i.add(fy1_t);
+fx1_t = fx1_t.add(x_i);
+fy1_t = fy1_t.add(y_i);
 
 var e = nerdamer(func, {x: fx1_t, y: fy1_t});
-e = nerdamer('simplify(' + e +')');
 
 //Derivamos con respecto a t
 var derivT = nerdamer.diff(e, 't');
 var sol = nerdamer.solve(derivT, 't');
+console.log('t?', sol.text());
 
-x_i = x_i.add(sol.multiply(fx1));
-y_i = y_i.add(sol.multiply(fy1));
+x_i = x_i.add(fx1.multiply(sol));
+y_i = y_i.add(fy1.multiply(sol));
 
 var x_iR = '' + x_i;
 var y_iR = '' + y_i;
 
 var resultX = x_iR.replace(/[[\]]/g,'')
-var rx = nerdamer('simplify(' + resultX +')');
+rx = nerdamer('simplify(' + resultX +')');
 var resultY = y_iR.replace(/[[\]]/g,'')
 var ry = nerdamer('simplify(' + resultY +')');
 
@@ -86,14 +88,23 @@ y_i = ry;
 x_inicial = x_i;
 y_inicial = y_i;
 
-cont +=  1;
+
+fx1 = derivX.evaluate({x: x_i});
+fx1 = fx1.evaluate({y: y_i});
+fy1 = derivY.evaluate({y: y_i});
+fy1 = fy1.evaluate({x: x_i});
 
 console.log(x_i.text());
 console.log(y_i.text());
-console.log('x_inicial', x_inicial.text());
-console.log(cont);
 
-}
+var valorfinal = nerdamer(func, {x: x_i, y: y_i});
+console.log(valorfinal.text());
+
+datos.push({iteraciones: cont, x_: x_i+" | "+y_i, fx_: fx1+" | "+fy1, ft_: fx1_t+" | "+fy1_t, t: sol, xi_: x_inicial+" | "+y_inicial, resultado: valorfinal});
+console.table(datos);
+
+}while(Math.abs(fx1) > err || Math.abs(fy1) > err);
+console.table(datos);
 
 // Agregamos la funcion a la bd
     // const newFunc = {
@@ -102,12 +113,16 @@ console.log(cont);
     // console.log(newFunc);
     // await pool.query('INSERT INTO funcionprueba SET ?', [newFunc]);
     res.render('index', {data: funcion,
+    resultado: valorfinal,
     visible: 'none',
     visible2: 'block',
     dX : derivX.text(),
     dY : derivY.text(),   
-    x_i : x_i, 
-    y_i : y_i
+    x_i : px, 
+    y_i : py,
+    px1: px1,
+    py1: py1,
+    datos: datos
     });
     
 });

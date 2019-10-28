@@ -3,18 +3,14 @@
         <h3 class="mb-1">Funcion Ingresada:</h3>
         <br>
         <h4 class="form-group">{{ data }}</h4>
-        <h5 class="mb-3">
-            <em>Resultado</em>
-        </h5>
         <br>
     </div>
-
-<div class="container mx-auto" style="text-align:center;">
-    <div class="col-md-4 mx-auto" style="float: left;">
+<div class="container mx-auto text-center" style="text-align:center;">
+    <div class="col-md-3 mx-auto" style="float: left;">
         <div class="card" style="border: 2px solid #000000; border-radius: 20px;">
-        <h3 class="text-center">
+        <h4 class="text-center">
         <em>Vector Inicial</em>
-        </h3>
+        </h4>
             <div class="input-group p-2">
             <input name="x_inicial" id="x_inicial" type="number" class="form-control text-center" value={{ x_i }}>
             <span class="input-group-addon">-</span>
@@ -23,55 +19,63 @@
         </div>
     </div>
 
-            <div class="col-md-4 mx-auto" style="display: inline-block;">
+            <div class="col-md-6 mx-auto" style="display: inline-block;">
                 <div class="card" style="border: 2px solid #000000; border-radius: 25px;">
-                <h3 class="text-center">
+                <h4 class="text-center">
                 <em>Iteraciones</em>
-                </h3>
+                </h4>
                     <table class="table">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">X'</th>
+                            <th scope="col">grad f(X')</th>
+                            <th scope="col">X' + t[grad f(X')]</th>
+                            <th scope="col">t*</th>
+                            <th scope="col">Solución.</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
+                             {{#each datos}}
+                                <tr>
+                                <td>{{iteraciones}}</td>
+                                <td>{{x_}}</td>
+                                <td>{{fx_}}</td>
+                                <td>{{ft_}}</td>
+                                <td>{{ t }}</td>
+                                <td>{{resultado}}</td>
+                                </tr>
+                                {{/each}}
                         </tbody>
                         </table>
                 </div>
+                <h5 class="mb-3">
+                    <em>Resultado</em>
+                    <h3>{{ resultado }}</h3>
+                </h5>
+
             </div>
 
-            <div class="col-md-4 mx-auto" style="float:right;">
+            <div class="col-md-3 mx-auto" style="float:right; display:inline-block;">
                 <div class="card" style="border: 2px solid #000000; border-radius: 20px;">
-                    <h3 class="text-center">
+                    <h4 class="text-center">
                         <em> Derivadas Parciales </em>
-                    </h3> 
+                    </h4> 
                         <div class="input-group p-2">
                         <input name="d_x_inicial" id="d_x_inicial" type="text" class="form-control text-center" value={{ dX }}>
                         <span class="input-group-addon">-</span>
                         <input name="d_y_inicial" id="d_y_inicial" type="text" class="form-control text-center" value={{ dY }}>
-                        </div>           
+                        </div>
+                    <h6 class="text-center">
+                        <em> Derivando respecto al vector inicial... </em>
+                    </h6>      
+                        <div class="input-group p-2">
+                        <input name="v_x_inicial" id="v_x_inicial" type="text" class="form-control text-center" value={{ px1 }}>
+                        <span class="input-group-addon">-</span>
+                        <input name="d_y_inicial" id="d_y_inicial" type="text" class="form-control text-center" value={{ py1 }}>
+                        </div>          
                 </div>
+               
             </div>
 </div>
 
