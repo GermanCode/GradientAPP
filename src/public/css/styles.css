@@ -12,7 +12,7 @@ div#content {
 }
 
 #cinta {
-  /*background: url('/img/Fondo2.jpg');*/
+  
   background-repeat: repeat;
   background-position: center bottom ;
 }
@@ -26,7 +26,9 @@ input#hide:checked ~ div#content {
 }
 
 body{
-  background: #b3b7c2;
+  
+  background: url('/img/Fondo3.jpg');
+ /* background: #b3b7c2;*/
   font-family: 'Oswald', sans-serif;
   /*overflow: hidden;*/
   width: 100%;
@@ -58,7 +60,7 @@ main{
 }
 
 .masterfooter {
-  /*background: url('/img/Fondo2.jpg');*/
+  /*background: url('/img/Fondo2.jpg');*/ 
   background-repeat: repeat;
   background-size: contain;
   font-size: 0.6rem;
@@ -97,4 +99,25 @@ main{
 
 .ocultar{
   display : none;
+}
+
+
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.menor{
+  height: 200px;
 }
