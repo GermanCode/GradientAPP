@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     res.render('index'); 
 });
 
-router.post('/', async (req, res)=>{
+router.post('https://gradient2019.herokuapp.com/', async (req, res)=>{
     var cont = 0;
     const err = 0.3;
     var datos = [];
