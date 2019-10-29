@@ -8,11 +8,11 @@ const Extra = require('../public/javascript/nerdamer/jiggzson-nerdamer-305a486/E
 
 const pool = require('../database');
 
-router.get('/', (req, res) => {
+router.get('https://gradient2019.herokuapp.com/', (req, res) => {
     res.render('index'); 
 });
 
-router.post('/', async (req, res)=>{
+router.post('https://gradient2019.herokuapp.com/', async (req, res)=>{
     var cont = 0;
     const err = 0.3;
     var datos = [];
