@@ -8,15 +8,21 @@ const Extra = require('../public/javascript/nerdamer/jiggzson-nerdamer-305a486/E
 
 const pool = require('../database');
 
+function redondeo(numero, decimales){
+var flotante = parseFloat(numero);
+var resultado = Math.round(flotante*Math.pow(10, decimales))/Math.pow(10, decimales);
+return resultado;
+};
+
 router.get('/', (req, res) => {
     res.render('index'); 
 });
 
 router.post('/', async (req, res)=>{
     var cont = 0;
-    const err = 0.3;
+    const err = 0.01;
     var datos = [];
-    var px, py;
+    var px, py, px1t, py1t;
 //Recibimos la funcion ingresada y la almacenamos en una vairable llamada "funcion"
     var { funcion, x_inicial, y_inicial } = req.body;
 
@@ -51,9 +57,13 @@ var fy1 = derivY.evaluate({y: y_i});
 fy1 = fy1.evaluate({x: x_i});
 var py1 = fy1;
 
+//Definimos el contador de la iteraciones.
 cont = 0;
-do{
 
+
+while(Math.abs(fx1) > err || Math.abs(fy1) > err){
+
+//empiezan las iteraciones
 cont ++;
 
 //Multiplicamos por t.
@@ -82,6 +92,7 @@ rx = nerdamer('simplify(' + resultX +')');
 var resultY = y_iR.replace(/[[\]]/g,'')
 var ry = nerdamer('simplify(' + resultY +')');
 
+//Asignacion de variables.
 x_i = rx;
 y_i = ry;
 
@@ -94,16 +105,13 @@ fx1 = fx1.evaluate({y: y_i});
 fy1 = derivY.evaluate({y: y_i});
 fy1 = fy1.evaluate({x: x_i});
 
-console.log(x_i.text());
-console.log(y_i.text());
-
 var valorfinal = nerdamer(func, {x: x_i, y: y_i});
-console.log(valorfinal.text());
 
+//Agregamos el arreglo de objetos JSON
 datos.push({iteraciones: cont, x_: x_i+" | "+y_i, fx_: fx1+" | "+fy1, ft_: fx1_t+" | "+fy1_t, t: sol, xi_: x_inicial+" | "+y_inicial, resultado: valorfinal});
-console.table(datos);
 
-}while(Math.abs(fx1) > err || Math.abs(fy1) > err);
+
+}
 console.table(datos);
 
 // Agregamos la funcion a la bd
