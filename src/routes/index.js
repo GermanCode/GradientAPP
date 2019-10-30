@@ -88,7 +88,7 @@ var x_iR = '' + x_i;
 var y_iR = '' + y_i;
 
 var resultX = x_iR.replace(/[[\]]/g,'')
-rx = nerdamer('simplify(' + x_i +')');
+var rx = nerdamer('simplify(' + resultX +')');
 var resultY = y_iR.replace(/[[\]]/g,'')
 var ry = nerdamer('simplify(' + resultY +')');
 
