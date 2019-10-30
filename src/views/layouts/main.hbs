@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/jquery.datetimepicker.css">
     <script src="javscript/bootstrap.min.js"></script>
+    <script src="javscript/jquery.js"></script>
+    <script src="javscript/jquery.datetimepicker.full.js"></script>
     {{!-- GOOGLE FONTS --}}
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     {{!-- BOOTSTRAP 4 --}}
@@ -76,15 +80,10 @@
             document.getElementById("ejemplo").innerHTML = mensaje;
         };  
 
-    $(document).ready(function(){
-    $('.mover').hover(function(){
-        $(this).addClass('animated bounce');
-    });
-});
-  </script>
+    </script>
 </head>
 
-<body class="body">
+<body class="body" style="background: url('/img/Fondo6.jpg');">
     {{> navigation }}
 
     {{> message }}

@@ -1,8 +1,8 @@
-<div class="container p-2">
+<div class="container" style="border: 1px solid #000000; border-radius: 20px; width: 100%; height: 505px; background: url('/img/Fondo2.jpg');">
     <div class="row">
-        <div class="col-md-5 mx-auto p-2">
-            <h1>Agregar Nuevo Ejercicio</h1>
-            <div class="card">
+        <div class="col-md-5 mx-auto p-1 text-center" style="overflow:auto">
+            <h1 style="background-color: whitesmoke; border-radius: 20px; opacity: 0.9; border: 1px solid #000000;">Nuevo Ejercicio</h1>
+            <div class="card" style="border: 1px solid #000000;">
                 <div class="card-body ">
                     <form action="/ejercicios/add_ejercicio" method="POST">
                         <div class="form-group">
@@ -11,8 +11,7 @@
                         </div>
                         <div class="form-group">
                             <b>Restricciones?</b>
-                            <input type="checkbox" name="check" id="check" value="1"
-                                onchange="javascript:mostrarPanelRestricciones()" />
+                            <input type="checkbox" name="check" id="check" value="1" onchange="javascript:mostrarPanelRestricciones()" />
                         </div>
                         <div class="form-group">
                             <div id="content" style="display: none;">
@@ -35,30 +34,29 @@
                                             <input type="text" class="form-control" id="inputLadoDer" name="inputLadoDer" placeholder="Lado Der">
                                         </div>
                                     </div>
-                                    <div class="container p-2">
-                                        
+                                    <div class="container p-1">                                            
                                         <button type="button" id="addRestric" name="addRestric" onclick="javascript:llenarHidden()"> + 
                                         <button type="button" id="delRestric" name="delRestric" onclick="javascript:eliminarRestriccion()"> - 
                                         <input id="restriccionCompleta" name="restriccionCompleta" type="hidden">      
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        
+                            </div>                           
                         </div>
                         <div class="form-group">
-                            <textarea name="desc_Ejer" id="descripcion" rows="2" class="form-control p-2" placeholder="Descripcion del Ejercicio"></textarea>
+                            <textarea name="desc_Ejer" id="descripcion" rows="2" class="form-control p-1" placeholder="Descripcion del Ejercicio"></textarea>
                         </div>
                         <div class="form-group"></div>
-                        <input id="fk_Docente" name="fk_Docente" type="hidden" value="1"> 
-                        <input id="fecha_Fin" name="fecha_Fin" type="date" value="2019-10-01">     
+                        <input id="fk_Docente" name="fk_Docente" type="hidden" value="1"/>
+                        <div class="form-group text-center">
+                            <h4>Fecha de Presentación.</h4>
+                            <input id="fecha_Fin" name="fecha_Fin" type="date" value="2019-10-01" min="2019-10-01" max="2019-12-31"/>
+                        </div>     
                         <button class="btn btn-success btn-block">
                             Guardar
                         </button>
-                        <p></p>
                 </div>
-                </form>
+                    </form>
             </div>
         </div>
     </div>
-</div>
 </div>
