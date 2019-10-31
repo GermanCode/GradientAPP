@@ -18,10 +18,16 @@
                     </div>
                     
                     <div class="form-goup">
-                        <input type="text" name="curso" class="form-control" placeholder="Curso">
+                        <input type="text" name="telefono" class="form-control" placeholder="Telefono">
                     </div>
-                    
                     <div class="form-group"></div>
+                    <div class="form-group">
+                        <h5>Seleccione Curso... </h5>
+                        <select  id="curso" name="curso" onchange="selectCursoRegistro">
+                            <option value="MD1"><a class="dropdown-item" href="#"> Modelos Deterministicos - Grupo I </a></option>
+                            <option value="MD2"><a class="dropdown-item" href="#"> Modelos Deterministicos - Grupo II </a></option>
+                        </select>
+                    </div>
 
                     <div class="form-goup">
                         <button class="btn btn-success btn-block">

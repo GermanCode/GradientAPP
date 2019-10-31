@@ -12,11 +12,14 @@
                     <a class = "nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" arias aria-haspopup="true" aria-expanded="false">
                         Panel
                     </a>
+                    
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a href="/ejercicios" class="dropdown-item">Listado de Ejercicios</a>
                         <a href="#" class="dropdown-item">Reglas de Derivacion</a> {{!another action}}
+                    {{#ifEquals user.fk_Rol_Persona 2}}
                         <div class="dropdown-divider"></div>
                         <a href="/ejercicios/add_ejercicio" class="dropdown-item">Agregar un Ejercicio</a>
+                    {{/ifEquals}}
                     </div>
                 </li>
                 <li class="nav-item">

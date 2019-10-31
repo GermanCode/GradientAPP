@@ -8,11 +8,6 @@ const Extra = require('../public/javascript/nerdamer/jiggzson-nerdamer-305a486/E
 
 const pool = require('../database');
 
-function redondeo(numero, decimales){
-var flotante = parseFloat(numero);
-var resultado = Math.round(flotante*Math.pow(10, decimales))/Math.pow(10, decimales);
-return resultado;
-};
 
 router.get('/', (req, res) => {
     res.render('index'); 

@@ -10,13 +10,12 @@ passport.use('local.signin', new LocalStrategy({
     passwordField: 'apellido',
     passReqToCallback: true
 }, async (req, id_Persona, apellido, done) => {
-    console.log(req.body);
-    const rows = await pool.query('SELECT * FROM persona WHERE id_Persona = ?', [id_Persona]);
+    const rows = await pool.query('SELECT * FROM persona inner join roles_persona on fk_Persona_Rol = id_Persona  where id_Persona = ?', [id_Persona]);
     if (rows.length > 0) {
         const user = rows[0];
         const validPassword = await helpers.mathPassword(apellido, user.apellido);
         if(validPassword){
-            done(null, user, req.flash('success', 'Welcome' + user.nombre));
+            done(null, user, req.flash('success', 'Welcome ' + user.nombre + user.fk_Rol_Persona));
         } else {
             done(null, false, req.flash('message', 'Incorrect Password'));
         }
@@ -30,19 +29,20 @@ passport.use('local.signup', new LocalStrategy({
     passwordField: 'apellido',
     passReqToCallback: true
 }, async (req, id_Persona, apellido, done) => {
-    console.log(req.body);
     const { nombre } = req.body;
     const { telefono } = req.body;
+    const { curso } = req.body;
+    const { fk_Rol_Persona } = req.body;
     const newUser = {
         id_Persona,
         nombre,
         apellido,
-        telefono
+        telefono,
+        curso
     };
     newUser.apellido = await helpers.encryptPassword(apellido);
     const result = await pool.query('INSERT INTO persona SET ?', [newUser]);
-    //newUser.id = result.insertId;
-    //console.log(result);
+    
     return done(null, newUser);
 }));
 
@@ -51,6 +51,6 @@ passport.use('local.signup', new LocalStrategy({
   });
 
  passport.deserializeUser( async (id_Persona, done) => {
-    const rows = await pool.query('SELECT * FROM persona WHERE id_Persona = ?', [id_Persona]);
+    const rows = await pool.query('SELECT * FROM persona inner join roles_persona on fk_Persona_Rol = id_Persona  where id_Persona = ?', [id_Persona]);
     done(null, rows[0]);
  });
