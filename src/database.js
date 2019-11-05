@@ -13,11 +13,13 @@ pool.getConnection((err, connection)=>{
         }
         if(err.code === 'ER_CON_COUNT_ERROR'){
             console.error('DATABASE HOW MANY CONNECTIONS');
-
         }
         if(err.code === 'ECONREFUSED'){
             console.error('DATABASE CONNECTION WAS REFUSED');
-
+        }
+        if(err.code === 'ER_DUP_ENTRY'){
+            console.error('YA EXISTE');
+            res.send(alert('YA EXISTE'));
         }
 
     }
@@ -28,8 +30,6 @@ pool.getConnection((err, connection)=>{
 });
 
 //Promisify pool querys
-
-
 pool.query = promisify(pool.query);
 
 module.exports = pool;

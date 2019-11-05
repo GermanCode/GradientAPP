@@ -1,33 +1,59 @@
-<div class="index container p-2">
-    <div class="row p-1">
-        {{#each ejercicios}}
+<div class="index container p-1">
+  <div class="row p-1">
+    {{#ifEquals user.fk_Rol_Persona  2}}
+      {{#each ejercicios }}
         <div class="col-md-4 p-1">
-            <div class="card text-center" id="card">
-                <div class="card-body">
-                    <a href="/ejercicios/edit_ejercicio/{{ id_Ejercicio }}" >
-                        <h4 class="card-title text-uppercase">
-                            {{fk_Docente}} 
-                            {{func_Obj}}
-                        </h4>
-                    </a>
-                    <p class= "m-2">{{desc_Ejer}}</p>
-                    <p>Fecha inicio: {{timeago fecha_Ini}}</p>
-                    <p>Fecha entrega: {{timeago fecha_Fin}}</p>
-                    <p>Fecha de Envío: {{ timeago fecha_Env }}</p>
-                    <a href="/ejercicios/delete/{{id_Ejercicio}}" class="btn btn-danger" onclick="return confirm('Estás seguro que deseas eliminar el ejercicio?');">Eliminar Ejercicio</a>
-                    <a href="/ejercicios/edit_ejercicio/{{id_Ejercicio}}" class="btn btn-secondary">Editar Ejercicio</a>
-                </div>
-            </div>
-        </div>
-        {{else}}
-            <div class="col-md-4 mx-auto">
-                <div class="card card-body text-center">
-                    <p>No hay Ejercicios Registrados aún... -- There are not Exercises saved yet...</p>
-                    <a href="/ejercicios/add_ejercicio">Crear un Ejercicio!</a>
-                </div>
-            </div>
-        {{/each}}
-    </div>
-</div>
+          <div class="card text-center" id="card">
+            <div class="card-body">
+              <a href="/ejercicios/edit_ejercicio/{{ id_Ejercicio }}">
+                <h4 class="card-title text-uppercase">
+                  {{func_Obj}}
+                </h4>
+              </a>
+              <p class="m-2">{{desc_Ejer}}</p>
+              <p>Fecha inicio: {{timeago fecha_Ini}}</p>
+              <p>Fecha entrega: {{timeago fecha_Fin}}</p>
 
- 
+              <a href="/ejercicios/delete/{{id_Ejercicio}}" class="btn btn-danger"
+                onclick="return confirm('Estás seguro que deseas eliminar el ejercicio?');">Eliminar Ejercicio</a>
+              <a href="/ejercicios/edit_ejercicio/{{id_Ejercicio}}" class="btn btn-secondary">Editar Ejercicio</a>
+            </div>
+          </div>
+        </div>
+      {{else}}
+      <div class="col-md-4 mx-auto">
+        <div class="card card-body text-center">
+          <p>No hay Ejercicios Registrados aún... -- There are not Exercises saved yet...</p>
+          <a href="/ejercicios/add_ejercicio">Crear un Ejercicio!</a>
+        </div>
+      </div>
+      {{/each}}
+
+{{else}}
+{{#each ejercicios}}
+<div class="col-md-4 p-1">
+  <div class="card text-center" id="card">
+    <div class="card-body">
+      <a href="/ejercicios/edit_ejercicio/{{ id_Ejercicio }}">
+        <h4 class="card-title text-uppercase">
+          {{fk_Docente}}
+          {{func_Obj}}
+        </h4>
+      </a>
+      <p class="m-2">{{ desc_Ejer }}</p>
+      <p>Fecha inicio: {{timeago fecha_Ini}}</p>
+      <p>Fecha entrega: {{timeago fecha_Fin}}</p>   
+      <a href="/ejercicios/solve_ejercicio/{{id_Ejercicio}}" class="btn btn-info">Resolver Ejercicio</a>
+    </div>
+  </div>
+</div>
+{{else}}
+<div class="col-md-4 mx-auto">
+  <div class="card card-body text-center">
+    <p>No hay Ejercicios pendientes... -- There are not Exercises...</p>
+  </div>
+</div>
+{{/each}}
+{{/ifEquals}}
+  </div>
+</div>

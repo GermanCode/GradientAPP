@@ -1,4 +1,5 @@
 const express = require("express");
+const fileUpload = require('express-fileupload');
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
 const path = require("path");
@@ -49,6 +50,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(fileUpload());
 
 // Global Variables
 
