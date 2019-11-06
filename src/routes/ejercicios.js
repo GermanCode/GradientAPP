@@ -78,10 +78,11 @@ router.get('/ejercicios/delete/:id_ejercicio', isLoggedIn, async (req, res)=>{
     res.redirect('/ejercicios');
 });
 
-
-
 router.post('/ejercicios/solve_ejercicio/:id_ejercicio', isLoggedIn, async (req, res) =>{
-    try {
+    
+
+    try {     
+
         var img_Solucion = req.files.solucion;
         const fk_Estudiante = req.user.id_Persona;
         const { fk_Ejercicio } = req.body;

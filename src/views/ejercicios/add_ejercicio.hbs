@@ -49,8 +49,14 @@
                         <input id="fk_Docente" name="fk_Docente" type="hidden" value="1"/>
                         <div class="form-group text-center">
                             <h4>Fecha de Presentación.</h4>
-                            <input id="fecha_Fin" name="fecha_Fin" type="date" value="2019-10-01" min="2019-10-01" max="2019-12-31"/>
-                        </div>     
+                            <input id="fecha_Fin" name="fecha_Fin" type="date" value="2019-11-01" min="2019-10-01" max="2019-12-31"/>
+                        </div>
+                        <div class="form-group text-center">
+                        <select  id="fk_Curso" name="fk_Curso" onchange="selectCursoRegistro">
+                            <option value="1"><a class="dropdown-item" href="#"> Modelos Deterministicos - Grupo I </a></option>
+                            <option value="2"><a class="dropdown-item" href="#"> Modelos Deterministicos - Grupo II </a></option>
+                        </select>    
+                        </div> 
                         <button class="btn btn-success btn-block">
                             Guardar
                         </button>
