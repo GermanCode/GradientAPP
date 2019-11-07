@@ -4,16 +4,16 @@ const pool = require('../database');
 const helpers = require('../lib/helpers');
 
 
-
 passport.use('local.signin', new LocalStrategy({
     usernameField: 'id_Persona',
-    passwordField: 'apellido',
+    passwordField: 'password',
     passReqToCallback: true
-}, async (req, id_Persona, apellido, done) => {
+}, async (req, id_Persona, password, done) => {
     const rows = await pool.query('SELECT * FROM persona inner join roles_persona on fk_Persona_Rol = id_Persona  where id_Persona = ?', [id_Persona]);
+    console.log(rows);
     if (rows.length > 0) {
         const user = rows[0];
-        const validPassword = await helpers.mathPassword(apellido, user.apellido);
+        const validPassword = await helpers.mathPassword(password, user.password);
         if(validPassword){
             done(null, user, req.flash('success', 'Welcome ' + user.nombre + user.fk_Rol_Persona));
         } else {
@@ -26,10 +26,11 @@ passport.use('local.signin', new LocalStrategy({
 
 passport.use('local.signup', new LocalStrategy({
     usernameField: 'id_Persona',
-    passwordField: 'apellido',
+    passwordField: 'password',
     passReqToCallback: true
-}, async (req, id_Persona, apellido, done) => {
+}, async (req, id_Persona, password, done) => {
     const { nombre } = req.body;
+    const { apellido } = req.body;
     const { telefono } = req.body;
     const { curso } = req.body;
     const { fk_Rol_Persona } = req.body;
@@ -38,9 +39,10 @@ passport.use('local.signup', new LocalStrategy({
         nombre,
         apellido,
         telefono,
-        curso
+        curso,
+        password
     };
-    newUser.apellido = await helpers.encryptPassword(apellido);
+    newUser.password = await helpers.encryptPassword(password);
     const result = await pool.query('INSERT INTO persona SET ?', [newUser]);
     
     return done(null, newUser);
