@@ -25,8 +25,20 @@
         integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
 
     <script type="text/javascript">
-
-
+    
+        function readFile() { 
+            if (this.files && this.files[0]) {
+                var FR= new FileReader();
+                FR.addEventListener("load", function(e) {
+                document.getElementById("img").src       = e.target.result;
+                //document.getElementById("b64").innerHTML = e.target.result;
+                document.getElementById ("img_Solucion").value = e.target.result;
+                }); 
+                FR.readAsDataURL( this.files[0] );  
+            }
+    
+    };
+        
         function mostrarPanelRestricciones() {
             element = document.getElementById("content");
             check = document.getElementById("check");
@@ -46,7 +58,8 @@
         var cur = document.getElementById("select_Curso").value;
         return cur;
         };
-                function selectCursoEjercicio() {
+               
+        function selectCursoEjercicio() {
         var curejer = document.getElementById("fk_Curso").value;
         return curejer;
         alert(curejer);

@@ -8,6 +8,7 @@ const session = require('express-session');
 const MySqlStore = require('express-mysql-session');
 const passport = require('passport');
 
+
 const { database } = require('./keys');
 
 
@@ -69,6 +70,7 @@ app.use((req, res, next) => {
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
 app.use(require('./routes/ejercicios'));
+app.use(require('./routes/soluciones'));
 
 // Public
 

@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 const pool = require('../database');
+const fs = require('fs');
+const FileReader = require('filereader');
+
 
 router.get('/ejercicios', isLoggedIn, async (req, res)=>{
     var c = req.user.curso;
@@ -12,14 +15,14 @@ router.get('/ejercicios', isLoggedIn, async (req, res)=>{
     console.log(user);
     // Si el rol es '1' = Estudiante
     if(r==1){
-const ejercicios = await pool.query('select * from ejercicios inner join curso on fk_Curso = id_Curso where desc_Curso = ?', c);
-//const p3 = await pool.query('select * from soluciones inner join estudiante on fk_Estudiante = fk_Persona and fk_Curso = 1 group by fk_Ejercicio');
-console.log(ejercicios);
-res.render('ejercicios/list_ejercicios', { user, ejercicios });    
-}else{
-const ejercicios = await pool.query('select * from ejercicios inner join curso on fk_Curso = id_Curso');
-console.log(ejercicios);
-res.render('ejercicios/list_ejercicios', { user, ejercicios });
+        const ejercicios = await pool.query('select * from ejercicios inner join curso on fk_Curso = id_Curso where desc_Curso = ?', c);
+        //const p3 = await pool.query('select * from soluciones inner join estudiante on fk_Estudiante = fk_Persona and fk_Curso = 1 group by fk_Ejercicio');
+        console.log(ejercicios);
+        res.render('ejercicios/list_ejercicios', { user, ejercicios });    
+    }else{
+        const ejercicios = await pool.query('select * from ejercicios inner join curso on fk_Curso = id_Curso');
+        console.log(ejercicios);
+        res.render('ejercicios/list_ejercicios', { user, ejercicios });
     }
 
 });
@@ -79,13 +82,13 @@ router.get('/ejercicios/delete/:id_ejercicio', isLoggedIn, async (req, res)=>{
 });
 
 router.post('/ejercicios/solve_ejercicio/:id_ejercicio', isLoggedIn, async (req, res) =>{
-    
 
-    try {     
-
-        var img_Solucion = req.files.solucion;
+    try {
+        console.log('el body');
+        console.log(req.body);     
+        //var img_Solucion = req.body;         
         const fk_Estudiante = req.user.id_Persona;
-        const { fk_Ejercicio } = req.body;
+        const { fk_Ejercicio, img_Solucion } = req.body;
         const newSolucion = {
         fk_Ejercicio,
         fk_Estudiante,
@@ -96,6 +99,9 @@ router.post('/ejercicios/solve_ejercicio/:id_ejercicio', isLoggedIn, async (req,
     res.redirect('/ejercicios');
         
     } catch (error) {
+       /* if(error == ''){
+            hacer algo
+        }*/
         console.log('Error ' + error);
         req.flash('message', ' Error: El ejercicio ya se encuentra registrado como resuelto');
         res.redirect('/ejercicios');
@@ -110,11 +116,10 @@ router.get('/ejercicios/solve_ejercicio/:id_ejercicio', isLoggedIn, async (req, 
     console.log(req.user);
     const ejercicios = await pool.query('SELECT * FROM ejercicios inner join soluciones on fk_Ejercicio = id_ejercicio WHERE id_Ejercicio = ? and fk_Estudiante = ?', [id_ejercicio, req.user.id_Persona]);
     if(ejercicios.length > 0){
+
         ejercicios[0].fecha_Ini = ejercicios[0].fecha_Ini.toLocaleString();
         ejercicios[0].fecha_Fin = ejercicios[0].fecha_Fin.toDateString();
-        const time = ejercicios[0].fec_Creacion;
-        var t2 = time.toLocaleString();
-        console.log(t2);
+
     res.render('ejercicios/solve_ejercicio', { ejercicio: ejercicios[0], existe: 'disabled', texto: ' Ejercicio registrado, fecha de envio: '+ ejercicios[0].fec_Creacion.toLocaleString() +'', visible: 'true', novisible: 'false' });
     }else{
         const ejercicios = await pool.query('SELECT * FROM ejercicios  WHERE id_Ejercicio = ?', [id_ejercicio]);
@@ -125,5 +130,15 @@ router.get('/ejercicios/solve_ejercicio/:id_ejercicio', isLoggedIn, async (req, 
     }
     
 });
+
+
+// router.get('/soluciones', isLoggedIn, async (req, res)=>{
+//     const user = req.user;
+//     console.log(user);
+//     const soluciones = await pool.query('select * from soluciones');
+//     console.log(soluciones);
+//     res.render('ejercicios/list_soluciones', { user, soluciones });    
+// });
+
 
 module.exports = router;

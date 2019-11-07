@@ -1,0 +1,27 @@
+<div class="index container p-1">
+  <div class="row p-1">
+      {{#each soluciones }}
+        <div class="col-md-4 p-1">
+          <div class="card text-center" id="card">
+            <div class="card-body">
+              <a href="/soluciones/details_solucion/{{ fk_Ejercicio }}/{{ fk_Estudiante }}">
+                <h5 class="card-title text-uppercase">{{curso}}</h5>
+              </a>
+              <p class="m-2">Ejercicio: {{fk_Ejercicio}} | Estudiante: {{ fk_Estudiante}} - {{ nombre }}</p>
+              {{!<img src="{{img_Solucion}}{{!" alt="Red dot" style="width:300px; heigth: 300px;" />}}
+              <p>Fecha de Creacion: {{timeago fec_Creacion}}</p>
+
+              <a href="/soluciones/details_solucion/{{fk_Ejercicio}}/{{ fk_Estudiante }}" class="btn btn-secondary btn-block">Ver Solucion</a>
+            </div>
+          </div>
+        </div>
+      {{else}}
+      <div class="col-md-4 mx-auto">
+        <div class="card card-body text-center">
+          <p>No hay Ejercicios Registrados aún... -- There are not Exercises saved yet...</p>
+          <a href="/ejercicios/add_ejercicio">Crear un Ejercicio!</a>
+        </div>
+      </div>
+      {{/each}}
+  </div>
+</div>

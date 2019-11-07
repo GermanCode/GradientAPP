@@ -23,9 +23,12 @@
                         <input id="fk_Docente" name="fk_Docente" type="hidden" value="1"/>
                         <input id="fk_Ejercicio" name="fk_Ejercicio" type="hidden" value={{ejercicio.id_Ejercicio}}>
                         <div class="form-group">
-                         <input type="file" name="solucion" id = "solucion" accept="image/png, image/jpeg" {{ existe }}><h5 style="font-style:oblique; color:red">{{ texto }}</h5>
-                        </div>                                               
-                        <button class="btn btn-success btn-block" style="display: {{ visible }} "; {{ existe }}>
+                        <input type="file" name="solucion" id = "solucion" accept="image/png, image/jpeg" {{ existe }}><h5 style="font-style:oblique; color:red">{{ texto }}</h5>  
+                        <img id="img" name="img" height="150"> 
+                        <input id="img_Solucion" name="img_Solucion" type="hidden"/> 
+                       </div>
+                                             
+                        <button class="btn btn-success btn-block" style="display: {{ visible }}"; {{ existe }}>
                             Actualizar
                         </button>
                         <button class="btn btn-warning btn-block" style="display: {{ visible }} "; onclick="history.back(); return false">
@@ -37,3 +40,6 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("solucion").addEventListener("change", readFile);
+</script>

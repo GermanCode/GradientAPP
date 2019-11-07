@@ -1,0 +1,45 @@
+<div class="masterhead container p-1">
+  <div class="row p-1">
+    <div class="col-md-12 mx-auto p-1">
+      <div class="card">
+        <h3 class="card-header text-center p-2">Detalles:</h3>
+        <div class="card-body">
+          <form action="/ejercicios/solve_ejercicio/{{ejercicio.id_Ejercicio}}" method="POST"
+            enctype="multipart/form-data">
+            <div class="form-group mx-auto">
+              <h4 class="text-center">Funcion Objetivo:</h4>
+              <input type="text" name="func_Obj" value="{{solucion.func_Obj}}" readonly="readonly" class="form-control"
+                placeholder="Función Objetivo">
+            </div>
+            <div class="form-group">
+              <textarea name="desc_Ejer" rows="2" class="form-control" readonly="readonly"
+                placeholder="Descripcion del ejercicio">{{solucion.desc_Ejer}}</textarea>
+            </div>
+            <div class="form-group">
+              <h4 class="text-center">Presentado Por:</h4>
+              <input type="text" name="fk_estudiante" value="{{solucion.nombre}}" readonly="readonly" class="form-control"
+                placeholder="Presentado por: ">
+            </div>
+            <div class="form-group mx-auto text-center">
+              <h4 class="text-center">Solucion:</h4>
+              <img src="{{solucion.img_Solucion}}" alt="Red dot" style="width:300px; heigth: 200px;"/>
+            </div>
+            <div class="form-group">
+              <h4 class="text-center">Fecha de Entrega</h4>
+              <input type="text" id="fecha_Fin" name="fecha_Fin" value="{{solucion.fecha_Fin}}" readonly="readonly"
+                class="form-control" placeholder="Fecha de Entrega del Ejercicio.">
+            </div>
+
+            <input id="fk_Docente" name="fk_Docente" type="hidden" value="1" />
+            <input id="fk_Ejercicio" name="fk_Ejercicio" type="hidden" value={{ejercicio.id_Ejercicio}}>
+
+            <button class="btn btn-info btn-block" style="display: {{ visible }} " ;
+              onclick="history.back(); return false">
+              Regresar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
