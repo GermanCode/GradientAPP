@@ -5,8 +5,8 @@
                 <div class="card-body">
                     <h3> Bienvenido {{user.nombre}}</h3>
                     <h4>{{user.id_Persona}}</h4>
-                    {{#ifEquals user.fk_Rol_Persona 1}}
-                    <a href="/ejercicios/add_ejercicio" class="btn btn-primary m-4 text-center">Ingrese un nuevo ejercicio</a>
+                    {{#ifEquals user.fk_Rol_Persona 2}}
+                    <a href="/ejercicios/add_ejercicio" class="btn btn-info m-4 text-center">Ingrese un nuevo ejercicio</a>
                     {{else}}
                     <a href="/ejercicios" class="btn btn-primary m-4 text-center">Ejercicios Pendientes?</a>
                     {{/ifEquals }}

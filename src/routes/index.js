@@ -25,6 +25,7 @@ router.post('/', async (req, res)=>{
     var y_i = nerdamer(y_inicial);
     px=x_inicial;
     py=y_inicial;
+
 //Parseamos esa funcion para hacerla entendible por la maquina, con la ayuda de Algebra.JS
     var func = nerdamer(funcion);
     console.log(func.text());

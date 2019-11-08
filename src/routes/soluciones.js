@@ -18,9 +18,9 @@ router.get('/soluciones', isLoggedIn, async (req, res)=>{
     console.log("view " + fk_ejercicio);
     console.log(req.user);
     const solucion = await pool.query('SELECT * FROM ejercicios inner join soluciones on fk_Ejercicio = id_ejercicio inner join persona on fk_Estudiante = id_Persona WHERE id_Ejercicio = ? and fk_Estudiante = ?', [fk_ejercicio, fk_estudiante]);
+    console.log(solucion);
 
-
-        solucion[0].fecha_Ini = solucion[0].fecha_Ini.toLocaleString();
+        solucion[0].fecha_Ini = solucion[0].fecha_Ini.toDateString();
         solucion[0].fecha_Fin = solucion[0].fecha_Fin.toDateString();
 
     res.render('soluciones/details_solucion', { solucion: solucion[0] });
