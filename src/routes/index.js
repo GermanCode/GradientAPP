@@ -17,7 +17,8 @@ router.post('/', async (req, res)=>{
     var cont = 0;
     const err = 0.01;
     var datos = [];
-    var px, py, px1t, py1t;
+    var px, py, px1t, py1t; // Estas variables seran usadas solo para la visualizacion del resultado en tablas
+                            // ordenadas debido a las trasformaciones que sufre la variable a su paso
 //Recibimos la funcion ingresada y la almacenamos en una vairable llamada "funcion"
     var { funcion, x_inicial, y_inicial } = req.body;
 
@@ -58,6 +59,9 @@ cont = 0;
 
 
 while(Math.abs(fx1) > err || Math.abs(fy1) > err){
+//para mostrar
+px1t = nerdamer(x_inicial);
+py1t = nerdamer(y_inicial);
 
 //empiezan las iteraciones
 cont ++;
@@ -104,18 +108,11 @@ fy1 = fy1.evaluate({x: x_i});
 var valorfinal = nerdamer(func, {x: x_i, y: y_i});
 
 //Agregamos el arreglo de objetos JSON
-datos.push({iteraciones: cont, x_: x_i+" | "+y_i, fx_: fx1+" | "+fy1, ft_: fx1_t+" | "+fy1_t, t: sol, xi_: x_inicial+" | "+y_inicial, resultado: valorfinal});
-
+datos.push({iteraciones: cont, x_: px1t+" | "+py1t, fx_: fx1+" | "+fy1, ft_: fx1_t+" | "+fy1_t, t: sol, xi_: x_inicial+" | "+y_inicial, resultado: valorfinal});
 
 }
 console.table(datos);
 
-// Agregamos la funcion a la bd
-    // const newFunc = {
-    //     funcion
-    // };
-    // console.log(newFunc);
-    // await pool.query('INSERT INTO funcionprueba SET ?', [newFunc]);
     res.render('index', {data: funcion,
     resultado: valorfinal,
     visible: 'none',

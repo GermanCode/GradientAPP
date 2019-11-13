@@ -12,7 +12,6 @@ const passport = require('passport');
 const { database } = require('./keys');
 
 
-
 // Initializations 
 const app = express();
 require('./lib/passport');
