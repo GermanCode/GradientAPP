@@ -15,7 +15,4 @@ helpers.mathPassword = async (password, savedPassword) => {
     }
 };
 
-
-//await bcrypt.compare(password, savedPassword);
-
 module.exports = helpers;

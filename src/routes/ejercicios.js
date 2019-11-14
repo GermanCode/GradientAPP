@@ -83,10 +83,7 @@ router.get('/ejercicios/delete/:id_ejercicio', isLoggedIn, async (req, res)=>{
 
 router.post('/ejercicios/solve_ejercicio/:id_ejercicio', isLoggedIn, async (req, res) =>{
 
-    try {
-        console.log('el body');
-        console.log(req.body);     
-        //var img_Solucion = req.body;         
+    try {       
         const fk_Estudiante = req.user.id_Persona;
         const { fk_Ejercicio, img_Solucion } = req.body;
         const newSolucion = {
@@ -130,15 +127,5 @@ router.get('/ejercicios/solve_ejercicio/:id_ejercicio', isLoggedIn, async (req, 
     }
     
 });
-
-
-// router.get('/soluciones', isLoggedIn, async (req, res)=>{
-//     const user = req.user;
-//     console.log(user);
-//     const soluciones = await pool.query('select * from soluciones');
-//     console.log(soluciones);
-//     res.render('ejercicios/list_soluciones', { user, soluciones });    
-// });
-
 
 module.exports = router;
