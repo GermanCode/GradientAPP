@@ -54,6 +54,8 @@ var fy1 = derivY.evaluate({y: y_i});
 fy1 = fy1.evaluate({x: x_i});
 var py1 = fy1;
 
+console.log(py1.text());
+
 //Definimos el contador de la iteraciones.
 cont = 0;
 
