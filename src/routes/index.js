@@ -22,15 +22,17 @@ router.post('/', async (req, res)=>{
 //Recibimos la funcion ingresada y la almacenamos en una vairable llamada "funcion"
     var { funcion, x_inicial, y_inicial } = req.body;
 
+//Parseamos el texto a ecuacion on la libreria Nerdamer    
     var x_i = nerdamer(x_inicial);
     var y_i = nerdamer(y_inicial);
+//Asignamos a px el valor inicial de x.
     px=x_inicial;
     py=y_inicial;
 
-//Parseamos esa funcion para hacerla entendible por la maquina, con la ayuda de Algebra.JS
+//Parseamos esa funcion para hacerla entendible por la maquina, con la ayuda de Nerdamer.JS
     var func = nerdamer(funcion);
     console.log(func.text());
-//Hacemos uso de la biblioteca Merdaner para las derivadas paraciales
+//Hacemos uso de la biblioteca Nerdamer para las derivadas paraciales
     var derivX = nerdamer.diff(func, 'x');
 //Verificamos si es multivariada la funcion.
     if(funcion.indexOf('y') !== null){
@@ -47,18 +49,17 @@ var t = new nerdamer("t");
 //Evaluamos la derivada parcial de x.
 var fx1 = derivX.evaluate({x: x_i});
 fx1 = fx1.evaluate({y: y_i});
+//asignamos la variable a px1 para mostrarla en el view
 var px1 = fx1;
 
 //Evaluamos la derivada parcial de y.
 var fy1 = derivY.evaluate({y: y_i});
 fy1 = fy1.evaluate({x: x_i});
+//asignamos la variable a py1 para mostrarla en el view
 var py1 = fy1;
-
-console.log(py1.text());
 
 //Definimos el contador de la iteraciones.
 cont = 0;
-
 
 while(Math.abs(fx1) > err || Math.abs(fy1) > err){
 //para mostrar
@@ -81,17 +82,18 @@ var e = nerdamer(func, {x: fx1_t, y: fy1_t});
 //Derivamos con respecto a t
 var derivT = nerdamer.diff(e, 't');
 var sol = nerdamer.solve(derivT, 't');
-console.log('t?', sol.text());
 
+//Multiplicamos el valor de t por la derivada obtenida
 x_i = x_i.add(fx1.multiply(sol));
 y_i = y_i.add(fy1.multiply(sol));
 
 var x_iR = '' + x_i;
 var y_iR = '' + y_i;
 
-var resultX = x_iR.replace(/[[\]]/g,'')
+//Reemplazamos los valores simbolicos
+var resultX = x_iR.replace(/[[\]]/g,'');
 var rx = nerdamer('simplify(' + resultX +')');
-var resultY = y_iR.replace(/[[\]]/g,'')
+var resultY = y_iR.replace(/[[\]]/g,'');
 var ry = nerdamer('simplify(' + resultY +')');
 
 //Asignacion de variables.
@@ -101,18 +103,20 @@ y_i = ry;
 x_inicial = x_i;
 y_inicial = y_i;
 
-
+//Evaluamos las derivadas en los nuevos puntos obtenidos
 fx1 = derivX.evaluate({x: x_i});
 fx1 = fx1.evaluate({y: y_i});
 fy1 = derivY.evaluate({y: y_i});
 fy1 = fy1.evaluate({x: x_i});
 
+//Se valcula el valor final de la funcion maximizada.
 var valorfinal = nerdamer(func, {x: x_i, y: y_i});
 
 //Agregamos el arreglo de objetos JSON
-datos.push({iteraciones: cont, x_: px1t+" | "+py1t, fx_: fx1+" | "+fy1, ft_: fx1_t+" | "+fy1_t, t: sol, xi_: x_inicial+" | "+y_inicial, resultado: valorfinal});
+datos.push({iteraciones: cont, x_: px1t+" | "+py1t, fx_: fx1+" | "+fy1, ft_: fx1_t+" | "+fy1_t, t: sol.text(), xi_: x_inicial+" | "+y_inicial, resultado: valorfinal});
 
 }
+
 console.table(datos);
 
     res.render('index', {data: funcion,
@@ -126,8 +130,7 @@ console.table(datos);
     px1: px1,
     py1: py1,
     datos: datos
-    });
-    
+    }); 
 });
 
 module.exports = router;
