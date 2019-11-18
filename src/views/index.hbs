@@ -7,13 +7,13 @@
                 <div class="card-body" style="display: {{ visible }};">
                     <form action="/" method="POST">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="funcion" placeholder="Ingrese la Función a Resolver" autofocus>
+                        <input type="text" class="form-control" name="funcion" placeholder="Ingrese la Función a Resolver" required autofocus>
                     </div>
                     <h4 class="mx-auto text-center">Vector Inicial</h4>
                     <div class="input-group p-1">
-                    <input name="x_inicial" id="x_inicial" type="number" class="form-control text-center" placeholder="1" value=1>
+                    <input name="x_inicial" id="x_inicial" type="number" class="form-control text-center" placeholder="1" value=1 required>
                     <span class="input-group-addon">-</span>
-                    <input name="y_inicial" id="y_inicial" type="number" class="form-control text-center" placeholder="1" value=1>
+                    <input name="y_inicial" id="y_inicial" type="number" class="form-control text-center" placeholder="1" value=1 required>
                     </div>
                     <div class="form-group p-1">
                         <button class="btn btn-success btn-block">Resolver</button>

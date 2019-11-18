@@ -100,6 +100,19 @@
             }
             document.getElementById("ejemplo").innerHTML = mensaje;
         };  
+
+        function soloNumeros(e){
+            var teclaPulsada=window.event ? window.event.keyCode:e.which;
+            var valor=document.getElementById("inputNumero").value;
+            if(teclaPulsada==45 && valor.indexOf("-")==-1){
+                document.getElementById("inputNumero").value="-"+valor;
+            }
+            if(teclaPulsada==13 || (teclaPulsada==46 && valor.indexOf(".")==-1)){
+                return true;
+            }
+            return /\d/.test(String.fromCharCode(teclaPulsada));
+        }
+
     </script>
     
 </head>

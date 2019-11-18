@@ -14,8 +14,11 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res)=>{
+    try {
+        
+    
     var cont = 0;
-    const err = 0.01;
+    const err = 0.01//0.025;
     var datos = [];
     var px, py, px1t, py1t; // Estas variables seran usadas solo para la visualizacion del resultado en tablas
                             // ordenadas debido a las trasformaciones que sufre la variable a su paso
@@ -45,37 +48,47 @@ router.post('/', async (req, res)=>{
     console.log(derivY.text());
 //Generamos t symbol
 var t = new nerdamer("t");
+console.log(t.text());
 
 //Evaluamos la derivada parcial de x.
 var fx1 = derivX.evaluate({x: x_i});
 fx1 = fx1.evaluate({y: y_i});
 //asignamos la variable a px1 para mostrarla en el view
 var px1 = fx1;
+console.log(fx1.text());
 
 //Evaluamos la derivada parcial de y.
 var fy1 = derivY.evaluate({y: y_i});
 fy1 = fy1.evaluate({x: x_i});
 //asignamos la variable a py1 para mostrarla en el view
 var py1 = fy1;
+console.log(fy1.text());
 
 //Definimos el contador de la iteraciones.
 cont = 0;
 
-while(Math.abs(fx1) > err || Math.abs(fy1) > err){
+while(Math.abs(fx1) > err || Math.abs(fy1) > err ){
+               
 //para mostrar
 px1t = nerdamer(x_inicial);
 py1t = nerdamer(y_inicial);
 
+console.log(px1t.text());
+console.log(py1t.text());
+
 //empiezan las iteraciones
 cont ++;
+console.log(cont);
 
 //Multiplicamos por t.
 var fx1_t = fx1.multiply(t);
 var fy1_t = fy1.multiply(t);
 
+
 //Agregamos el vector inicial.
 fx1_t = fx1_t.add(x_i);
 fy1_t = fy1_t.add(y_i);
+
 
 var e = nerdamer(func, {x: fx1_t, y: fy1_t});
 
@@ -92,9 +105,12 @@ var y_iR = '' + y_i;
 
 //Reemplazamos los valores simbolicos
 var resultX = x_iR.replace(/[[\]]/g,'');
-var rx = nerdamer('simplify(' + resultX +')');
+var rx = nerdamer('arg('+ resultX +')');
+console.log(rx.text());
+rx = nerdamer('simplify(' + resultX +')');
+
 var resultY = y_iR.replace(/[[\]]/g,'');
-var ry = nerdamer('simplify(' + resultY +')');
+ry = nerdamer('simplify(' + resultY +')');
 
 //Asignacion de variables.
 x_i = rx;
@@ -109,6 +125,9 @@ fx1 = fx1.evaluate({y: y_i});
 fy1 = derivY.evaluate({y: y_i});
 fy1 = fy1.evaluate({x: x_i});
 
+console.log(fx1.text());
+console.log(fy1.text());
+
 //Se valcula el valor final de la funcion maximizada.
 var valorfinal = nerdamer(func, {x: x_i, y: y_i});
 
@@ -118,7 +137,6 @@ datos.push({iteraciones: cont, x_: px1t+" | "+py1t, fx_: fx1+" | "+fy1, ft_: fx1
 }
 
 console.table(datos);
-
     res.render('index', {data: funcion,
     resultado: valorfinal,
     visible: 'none',
@@ -131,6 +149,14 @@ console.table(datos);
     py1: py1,
     datos: datos
     }); 
+
+} catch (error) {
+    req.flash('message', 'Error, replantee su función de acuerdo a nuestros parametros, Gracias...');
+    res.redirect('/');   
+}
+
 });
+
+
 
 module.exports = router;
