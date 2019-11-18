@@ -25,6 +25,46 @@
         integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
 
     <script type="text/javascript">
+
+        function validacionfuncion(e) {
+
+        key=e.keyCode || e.which; 
+
+        teclado=String.fromCharCode(key).toLowerCase();
+
+        letras="xy,+-*/()^1234567890";
+
+        especiales="8";
+
+        teclado_especial=false;
+
+        for(var i in especiales){
+
+            if(key==especiales[i]){
+
+                teclado_especial=true;
+                break;
+            }
+        }
+        if(letras.indexOf(teclado)==-1 && !teclado_especial){
+            alert('Instrucciones: Se permite el ingreso de las variables "x" e "y", exponentes bajo el simbolo ^.  por ejemplo: x^2+2y+45*(x*Y)/3,2y');
+            return false;
+        }
+    };
+
+
+        function soloNumeros(e){
+            var teclaPulsada=window.event ? window.event.keyCode:e.which;
+            var valor=document.getElementById("x_inicial").value;
+            if(teclaPulsada==45 && valor.indexOf("-")==-1)
+            {
+                document.getElementById("x_inicial").value="-"+valor;
+            }
+            if(teclaPulsada==13 || (teclaPulsada==46 && valor.indexOf(".")==-1)){
+                return true;
+            }
+            return /\d/.test(String.fromCharCode(teclaPulsada));
+        };
     
         function readFile() { 
             if (this.files && this.files[0]) {
@@ -101,18 +141,7 @@
             document.getElementById("ejemplo").innerHTML = mensaje;
         };  
 
-        function soloNumeros(e){
-            var teclaPulsada=window.event ? window.event.keyCode:e.which;
-            var valor=document.getElementById("inputNumero").value;
-            if(teclaPulsada==45 && valor.indexOf("-")==-1){
-                document.getElementById("inputNumero").value="-"+valor;
-            }
-            if(teclaPulsada==13 || (teclaPulsada==46 && valor.indexOf(".")==-1)){
-                return true;
-            }
-            return /\d/.test(String.fromCharCode(teclaPulsada));
-        }
-
+        
     </script>
     
 </head>

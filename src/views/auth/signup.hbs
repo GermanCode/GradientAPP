@@ -8,24 +8,25 @@
                 <div class="card-body">
                     <form action="/signup" method="POST">
                     <div class="form-group">
-                        <input type="text" name="id_Persona" placeholder="No. Identificacion" class="form-control" autofocus>
+                        <input type="text" name="id_Persona" placeholder="No. Identificacion" class="form-control" autofocus pattern="[0-9]{8,12}" title="Ingrese como minimo 8 carácteres, campo numerico, omita letras y/o signos de puntuacion. Min:8">
+                        </div>
+                    <div class="form-group">
+                        <input type="text" name="nombre" placeholder="Nombres" class="form-control" pattern="[A-Za-z]{4,}" title="Ingrese como minimo 4 carácteres, omita numeros y/o signos de puntuacion">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="nombre" placeholder="Nombres" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="apellido" placeholder="Apellidos" class="form-control">
+                        <input type="text" name="apellido" placeholder="Apellidos" class="form-control" pattern="[A-Za-z]{4,}" title="Ingrese como minimo 4 carácteres, omita numeros y/o signos de puntuacion">
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" placeholder="Password" class="form-control">
                     </div>
                     <div class="form-goup">
-                        <input type="text" name="telefono" class="form-control" placeholder="Telefono">
+                        <input type="text" name="telefono" class="form-control" placeholder="Telefono" pattern="[0-9]{,10}" title="Ingrese como minimo 8 carácteres, campo numerico, omita letras y/o signos de puntuacion">
                     </div>
                     <div class="form-group"></div>
                     <div class="form-group">
                         <h5>Seleccione Curso... </h5>
-                        <select  id="curso" name="curso" onchange="selectCursoRegistro">
+                        <select  id="curso" name="curso" onchange="selectCursoRegistro" required title="Seleccione el curso al cual pertenece">
+                            <option value="">Seleccione un curso</option>
                             <option value="MD1"><a class="dropdown-item" href="#"> Modelos Deterministicos - Grupo I </a></option>
                             <option value="MD2"><a class="dropdown-item" href="#"> Modelos Deterministicos - Grupo II </a></option>
                         </select>
