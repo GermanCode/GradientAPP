@@ -7,7 +7,7 @@ module.exports = {
     //     database: 'gradientapp'
     // }
 
-    Producción
+    //Producción
     database: {
         host: 'nt71li6axbkq1q6a.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
         user: 'j4udxeq2g7okopn2',
