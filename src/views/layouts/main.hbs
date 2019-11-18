@@ -26,6 +26,10 @@
 
     <script type="text/javascript">
 
+        function minus(e) {
+        e.value = e.value.toLowerCase();
+        }
+
         function validacionfuncion(e) {
 
         key=e.keyCode || e.which; 
@@ -47,7 +51,7 @@
             }
         }
         if(letras.indexOf(teclado)==-1 && !teclado_especial){
-            alert('Instrucciones: Se permite el ingreso de las variables "x" e "y", exponentes bajo el simbolo ^.  por ejemplo: x^2+2y+45*(x*Y)/3,2y');
+            alert('Instrucciones: Se permite el ingreso de las variables "x" e "y", exponentes bajo el simbolo ^.  por ejemplo: x^2+2y+45*(x*y)/3,2y');
             return false;
         }
     };

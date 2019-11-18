@@ -14,9 +14,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res)=>{
-    try {
-        
-    
+    try {  
     var cont = 0;
     const err = 0.01//0.025;
     var datos = [];
@@ -24,6 +22,9 @@ router.post('/', async (req, res)=>{
                             // ordenadas debido a las trasformaciones que sufre la variable a su paso
 //Recibimos la funcion ingresada y la almacenamos en una vairable llamada "funcion"
     var { funcion, x_inicial, y_inicial } = req.body;
+
+    funcion=funcion.toLowerCase();
+    console.log(funcion);
 
 //Parseamos el texto a ecuacion on la libreria Nerdamer    
     var x_i = nerdamer(x_inicial);

@@ -7,7 +7,7 @@
                 <div class="card-body" style="display: {{ visible }};">
                     <form action="/" method="POST">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="funcion" id="funcion" placeholder="Ingrese la Función a Resolver" required autofocus  onkeypress="return validacionfuncion(event);">
+                        <input type="text" class="form-control" name="funcion" id="funcion" placeholder="Ingrese la Función a Resolver" onkeyup="minus(this);" required autofocus  onkeypress="return validacionfuncion(event);">
                     </div>
                     <h4 class="mx-auto text-center">Vector Inicial</h4>
                     <div class="input-group p-1">
