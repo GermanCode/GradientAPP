@@ -82,11 +82,40 @@ main{
 }
 
 @media only screen and (max-width: 768px) {
-  #div1{
-    width: 10px;
-    height: 10px;
+  #box-content{
+    width: 100%;
+    font-size: small;
   }
 
+  #box{
+    padding-top: 10px;
+    font-size: x-small;
+    width: 100%;
+  }
+
+  #box table{
+    font-size: small;
+  }
+
+  #todo{
+    font-size: x-small;
+  }
+
+  #div1{
+    padding: 10%;
+    width: 100%;
+  }
+
+  #resultado{
+    font-size: medium;
+  }
+
+  #cinta{
+    font-size: small;
+  }
+  #sticky-footer{
+    font-size: x-small;
+  }
   .masterhead h1 {
     font-size: 5.5rem;
 }
@@ -135,17 +164,16 @@ main{
 .box {
   height: 260px;
   border-radius: 30px;
-  min-width: 60%;
-  overflow-x: auto;
-  box-sizing: border-box;
+  width: 30%;
+  overflow: hidden;
 }
 
 .box-content {
   height: 260px;
-  
+  width: 60%;
+  overflow-x: scroll;
+  overflow-y: auto;
   border-radius: 30px;
-  min-width: 60%;
-  box-sizing: border-box;
 }
 
 
