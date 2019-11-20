@@ -36,10 +36,12 @@ body{
   margin: auto;
   min-width: 100%;
   max-width: 2000px;
-  overflow:auto; 
+  
+  box-sizing: border-box;
 }
 .index{
   height: 500px;
+  
 }
 
 main{
@@ -49,10 +51,11 @@ main{
   margin:auto;
   min-width:100%;
   max-width:2000px;
+  box-sizing: border-box;
 }
 
 .masterhead {
-  min-width:400px;
+  min-width:100%;
   max-width:2000px;
   color: white;
   min-height: 30rem;
@@ -78,15 +81,21 @@ main{
   padding: 0;
 }
 
-@media (min-width: 600px) {
-  .masterhead h1 {
-      font-size: 5.5rem;
+@media only screen and (max-width: 768px) {
+  #div1{
+    width: 10px;
+    height: 10px;
   }
-}
 
+  .masterhead h1 {
+    font-size: 5.5rem;
+}
+}
+  
 .logoGradiente {
   width: 30%;
   height: 20%;
+  min-height: 100%;
 }
 
 
@@ -126,12 +135,17 @@ main{
 .box {
   height: 260px;
   border-radius: 30px;
+  min-width: 60%;
+  overflow-x: auto;
+  box-sizing: border-box;
 }
 
 .box-content {
   height: 260px;
-  overflow: auto;
+  
   border-radius: 30px;
+  min-width: 60%;
+  box-sizing: border-box;
 }
 
 
