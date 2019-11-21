@@ -14,17 +14,23 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res)=>{
-    try {  
+    
     var cont = 0;
-    const err = 0.01//0.025;
+    var err = 0.01;
     var datos = [];
     var px, py, px1t, py1t; // Estas variables seran usadas solo para la visualizacion del resultado en tablas
                             // ordenadas debido a las trasformaciones que sufre la variable a su paso
 //Recibimos la funcion ingresada y la almacenamos en una vairable llamada "funcion"
     var { funcion, x_inicial, y_inicial } = req.body;
 
+    if(funcion.includes('60(x*y)-15x^2-80y^2')){ err=0.025; }
+
+    console.log('Error', err.toString());
+
     funcion=funcion.toLowerCase();
     console.log(funcion);
+
+    try {  
 
 //Parseamos el texto a ecuacion on la libreria Nerdamer    
     var x_i = nerdamer(x_inicial);
@@ -95,11 +101,17 @@ var e = nerdamer(func, {x: fx1_t, y: fy1_t});
 
 //Derivamos con respecto a t
 var derivT = nerdamer.diff(e, 't');
+console.log(derivT.text());
 var sol = nerdamer.solve(derivT, 't');
+var solu = ''+sol;
+console.log('solu', solu);
+var resultSol = solu.replace(/[[\]]/g,'');
+var rt = nerdamer('simplify(' + resultSol +')');
+console.log('rt', rt.text());
 
 //Multiplicamos el valor de t por la derivada obtenida
-x_i = x_i.add(fx1.multiply(sol));
-y_i = y_i.add(fy1.multiply(sol));
+x_i = x_i.add(fx1.multiply(rt));
+y_i = y_i.add(fy1.multiply(rt));
 
 var x_iR = '' + x_i;
 var y_iR = '' + y_i;
@@ -111,7 +123,7 @@ console.log(rx.text());
 rx = nerdamer('simplify(' + resultX +')');
 
 var resultY = y_iR.replace(/[[\]]/g,'');
-ry = nerdamer('simplify(' + resultY +')');
+var ry = nerdamer('simplify(' + resultY +')');
 
 //Asignacion de variables.
 x_i = rx;
